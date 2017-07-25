@@ -16,7 +16,7 @@
         /// <returns>The type returned by the polled function</returns>
         public static T PollSafe<T>(Func<T> toPoll)
         {
-            return PollSafe(toPoll, DefaultPollingTimeout, DefaultPollingInterval);
+            return _Poll(toPoll, DefaultCheck<T>(), DefaultPollingTimeout, DefaultPollingInterval).Item1;
         }
 
         /// <summary>
@@ -29,7 +29,7 @@
         /// <returns>The type returned by the polled function</returns>
         public static T PollSafe<T>(Func<T> toPoll, int timeout)
         {
-            return Poll(toPoll, DefaultCheck<T>(), timeout, DefaultPollingInterval);
+            return _Poll(toPoll, DefaultCheck<T>(), timeout, DefaultPollingInterval).Item1;
         }
 
         /// <summary>
@@ -43,7 +43,7 @@
         /// <returns>The type returned by the polled function</returns>
         public static T PollSafe<T>(Func<T> toPoll, int timeout, int interval)
         {
-            return Poll(toPoll, DefaultCheck<T>(), timeout, interval);
+            return _Poll(toPoll, DefaultCheck<T>(), timeout, interval).Item1;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@
         /// <returns>The type returned by the polled function</returns>
         public static T PollSafe<T>(Func<T> toPoll, Func<T, bool> toCheck)
         {
-            return PollSafe(toPoll, toCheck, DefaultPollingTimeout, DefaultPollingInterval);
+            return _Poll(toPoll, toCheck, DefaultPollingTimeout, DefaultPollingInterval).Item1;
         }
 
         /// <summary>

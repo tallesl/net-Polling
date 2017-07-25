@@ -30,7 +30,8 @@
         [TestMethod]
         public void Vanilla()
         {
-            using (var timer = Timer(500))            {
+            using (var timer = Timer(500))
+            {
                 Assert.AreEqual(Content, Poll(ReadFile));
             }
         }
@@ -64,10 +65,10 @@
             Poll(ReadFile, 500);
         }
 
-        [TestMethod, ExpectedException(typeof(PollingTimeoutException))]
+        [TestMethod]
         public void SafeTimeout()
         {
-            Assert.AreEqual(null, Poll(ReadFile, 500));
+            Assert.AreEqual(null, PollSafe(ReadFile, 500));
         }
     }
 }
